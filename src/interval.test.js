@@ -37,7 +37,6 @@ describe('Includes', function () {
 	test('includes : interval (2,5) and interval(2,5) => false', () => {
     	expect(interval.includes(interval)).toBe(true);
 	});
-
 });
 
 
