@@ -108,4 +108,5 @@ describe('Intersection', function () {
     	expect(tab).toEqual([]);
 	});
 
+
 });
