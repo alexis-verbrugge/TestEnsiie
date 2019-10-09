@@ -24,11 +24,11 @@ class BookRepository {
      */
     getTotalPrice() {
         var prices = this.db.get('books').map('price').value()
-        /* var total = 0
-        for (var i=0; i<this.getTotalCount(); i++) {
+        var total = 0
+        for (var i=0; i<prices.length; i++) {
             total+=prices[i];
-        }*/
-        return prices;
+        }
+        return total;
     }
 
 
@@ -36,7 +36,10 @@ class BookRepository {
      * Retourne un livre
      */
     getBookByName(bookName) {
-
+        var book = this.db.get('books')
+        .find({ name: bookName })
+        .value();
+        return book;
     }
 
     /**
