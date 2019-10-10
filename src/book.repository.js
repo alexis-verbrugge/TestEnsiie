@@ -61,8 +61,33 @@ class BookRepository {
      *      ....
      *  ]
      */
-    getCountBookAddedByMont(bookName) {
+    getCountBookAddedByMont() {
+        var books = this.db.get('books').sortby('date');
+        var tab_cumul = {};
 
+        for (var i=0; i<books.length; i++) {
+            var date = books[i].date;
+            var s_date = split(date);
+            var annee = s_date[0];
+            var mois = s_date[1];
+            var couple = annee+"-"+mois;
+            if (couple in tab_cumul) {
+                tab_cumul[couple].count+=1;
+            } else {
+                tab_cumul[couple]={year: annee, month: mois, count:1, count_cumulative:0};
+            }
+
+            console.log(tab_cumul);
+        }
+
+        for (var j=0; j<tab_cumul.length; i++) {
+            if (j==0) {
+                tab_cumul[j].count_cumulative=count;
+            } else {
+                tab_cumul[j].count_cumulative=count+tab_cumul[j-1].count;
+            }
+        }
+        return tab_cumul;
     }
 
 }
